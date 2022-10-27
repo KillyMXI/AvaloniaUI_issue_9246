@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:ail="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450"
+        x:Class="AvaloniaApplication1.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication1">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Window.Styles>
+		<Style Selector="TextBlock#tb2">
+			<Setter Property="Height" Value="100"/>
+			<Setter Property="Width" Value="100"/>
+			<Setter Property="Background" Value="#6c9"/>
+			<Style.Animations>
+				<Animation Duration="0:0:1"
+						   IterationCount="INFINITE">
+					<KeyFrame Cue="0%">
+						<Setter Property="IsVisible" Value="True"/>
+					</KeyFrame>
+					<KeyFrame Cue="50%">
+						<Setter Property="IsVisible" Value="False"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+	</Window.Styles>
+
+	<DockPanel>
+		<Panel DockPanel.Dock="Bottom"
+			   Height="140"
+			   Background="#69c"
+			   ToolTip.Placement="Pointer">
+			<ToolTip.Tip>
+				<StackPanel>
+					<TextBlock Text="Static part"/>
+					<TextBlock x:Name="tb2"
+							   Text="Slow loading part"/>
+				</StackPanel>
+			</ToolTip.Tip>
+			<TextBlock Text="Hover me"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"/>
+		</Panel>
+		<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	</DockPanel>
+
+</Window>
